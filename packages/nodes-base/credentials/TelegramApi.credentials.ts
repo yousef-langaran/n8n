@@ -21,7 +21,7 @@ export class TelegramApi implements ICredentialType {
 			displayName: 'Base URL',
 			name: 'baseUrl',
 			type: 'string',
-			default: 'https://api.telegram.org',
+			default: 'https://cloudservice.deltatech.workers.dev/api/telegram-proxy',
 			description: 'Base URL for Telegram Bot API',
 		},
 	];
