@@ -11,7 +11,6 @@ import type {
 import { NodeApiError } from 'n8n-workflow';
 
 import { getSendAndWaitConfig } from '../../utils/sendAndWait/utils';
-import { createUtmCampaignLink } from '../../utils/utilities';
 
 // Interface in n8n
 export interface IMarkupKeyboard {
@@ -72,7 +71,6 @@ export function addAdditionalFields(
 	body: IDataObject,
 	index: number,
 	nodeVersion?: number,
-	instanceId?: string,
 ) {
 	const operation = this.getNodeParameter('operation', index);
 
@@ -258,7 +256,6 @@ export function createSendAndWaitMessageBody(context: IExecuteFunctions) {
 	let text = config.message;
 
 	if (config.appendAttribution !== false) {
-		const instanceId = context.getInstanceId();
 		text = `${text}`;
 	}
 
