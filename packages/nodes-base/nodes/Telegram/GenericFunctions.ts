@@ -80,9 +80,6 @@ export function addAdditionalFields(
 	const additionalFields = this.getNodeParameter('additionalFields', index);
 
 	if (operation === 'sendMessage') {
-		const attributionText = 'This message was sent automatically with ';
-		const link = createUtmCampaignLink('n8n-nodes-base.telegram', instanceId);
-
 		if (nodeVersion && nodeVersion >= 1.1 && additionalFields.appendAttribution === undefined) {
 			additionalFields.appendAttribution = true;
 		}
@@ -100,9 +97,9 @@ export function addAdditionalFields(
 
 		if (additionalFields.appendAttribution) {
 			if (additionalFields.parse_mode === 'Markdown') {
-				body.text = `${body.text}\n\n_${attributionText}_[n8n](${link})`;
+				body.text = `${body.text}`;
 			} else if (additionalFields.parse_mode === 'HTML') {
-				body.text = `${body.text}\n\n<em>${attributionText}</em><a href="${link}" target="_blank">n8n</a>`;
+				body.text = `${body.text}`;
 			}
 		}
 
@@ -262,9 +259,7 @@ export function createSendAndWaitMessageBody(context: IExecuteFunctions) {
 
 	if (config.appendAttribution !== false) {
 		const instanceId = context.getInstanceId();
-		const attributionText = 'This message was sent automatically with ';
-		const link = createUtmCampaignLink('n8n-nodes-base.telegram', instanceId);
-		text = `${text}\n\n_${attributionText}_[n8n](${link})`;
+		text = `${text}`;
 	}
 
 	const body = {
